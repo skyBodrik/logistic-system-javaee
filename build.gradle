@@ -1,0 +1,17 @@
+group 'logistic'
+version 'v1.0-study'
+
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile 'com.sparkjava:spark-core:2.5'
+    compile 'com.sparkjava:spark-template-thymeleaf:2.3'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0-b05'
+    compile "org.jtwig:jtwig-web:5.85.3.RELEASE"
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
