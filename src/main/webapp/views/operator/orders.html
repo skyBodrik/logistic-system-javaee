@@ -1,0 +1,97 @@
+{% include '../layout/head.html' %}
+
+{% include '../layout/navigation.html' %}
+
+<div id="page-wrapper">
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-6 -->
+        <div class="col-lg-12">
+            <div class="panel panel-default main-panel">
+                <div class="panel-heading">
+                    Ваши заказы
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form role="form" method="post" action="?action=save_orders">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Дата создания</th>
+                                    <th>Статус</th>
+                                    <th>Перевозчик</th>
+                                    <th>Стоимость</th>
+                                    <th>Детали</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for order in orders %}
+                                    {% if order.getStatus is constant("logistic.web.models.Order.STATUS_WAITING_PAYMENT") %}
+                                        {% set rowMarker = "warning" %}
+                                    {% endif %}
+                                    {% if order.getStatus is constant("logistic.web.models.Order.STATUS_NEW") %}
+                                        {% set rowMarker = "" %}
+                                    {% endif %}
+                                    {% if order.getStatus in [constant("logistic.web.models.Order.STATUS_PAID_WAITING_TO_DISPATCH"), constant("logistic.web.models.Order.STATUS_IN_TRANSIT")] %}
+                                        {% set rowMarker = "info" %}
+                                    {% endif %}
+                                    {% if order.getStatus is constant("logistic.web.models.Order.STATUS_DELIVERED") %}
+                                        {% set rowMarker = "success" %}
+                                    {% endif %}
+                                    {% if order.getStatus is constant("logistic.web.models.Order.STATUS_REFUSED") %}
+                                        {% set rowMarker = "danger" %}
+                                    {% endif %}
+                                    <tr class="{{ rowMarker }}">
+                                        <td>
+                                            {{ order.getId() }}
+                                            <input type="hidden" value="{{- order.getId() -}}" name="orderId">
+                                        </td>
+                                        <td>{{ order.getDateCreate() }}</td>
+                                        <td>
+                                            <select class="form-control" name="status">
+                                                {% for key, status in statuses %}
+                                                    <option value="{{- key -}}" {% if order.getStatus() == key %}selected{% endif %}>{{- status -}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" name="carrier">
+                                                <option value="" selected>-</option>
+                                                {% for carrier in carriers %}
+                                                    <option value="{{- carrier.getId()  -}}" {% if carrier.getId() == order.getCarrierId() %}selected{% endif %}>{{- carrier.getName() -}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input class="form-control" name="cost" value="{{- order.getCost() -}}"> руб.
+                                            </div>
+                                        </td>
+                                        <td>{{ order.Details() }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-success">Сохранить</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+{% include '../layout/footer.html' %}

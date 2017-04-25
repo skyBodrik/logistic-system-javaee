@@ -1,0 +1,111 @@
+{% include '../layout/head.html' %}
+
+{% include '../layout/navigation.html' %}
+
+<div id="page-wrapper">
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-12 -->
+        <div class="col-lg-12">
+            <div class="panel panel-default main-panel">
+                <div class="panel-heading">
+                    Новый заказ
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <form role="form" method="post" action="?action=create_order">
+                        <h3>Информация о грузе:</h3>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Длина(м)</label>
+                                    <input class="form-control" name="postLength" placeholder="в метрах">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Ширина(м)</label>
+                                    <input class="form-control" name="postWidth" placeholder="в метрах">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Высота(м)</label>
+                                    <input class="form-control" name="postHeight" placeholder="в метрах">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <label>Вес(кг)</label>
+                                    <input class="form-control" name="postWeight" placeholder="в килограмах">
+                                </div>
+                            </div>
+                        </div>
+                        <h3>От куда:</h3>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Город</label>
+                                <select class="form-control" name="fromCity">
+                                    {% for city in cities %}
+                                    <option value="{{- city.getId() -}}">{{- city.getName() -}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group">
+                                    <label>Адрес</label>
+                                    <input class="form-control" name="fromAddress" placeholder="Например: ул. Робеспьера, дом 10, кв. 12">
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Куда:</h3>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>Город</label>
+                                <select class="form-control" name="toCity">
+                                    {% for city in cities %}
+                                    <option value="{{- city.getId() -}}">{{- city.getName() -}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group">
+                                    <label>Адрес</label>
+                                    <input class="form-control" name="toAddress" placeholder="Например: ул. Робеспьера, дом 10, кв. 12">
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Получатель:</h3>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Имя</label>
+                                    <input class="form-control" name="recipientName" placeholder="Василий Байбилов">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Телефон</label>
+                                    <input class="form-control" name="recipientPhone" placeholder="+7 951 532 23 65">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success">Заказать</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+{% include '../layout/footer.html' %}

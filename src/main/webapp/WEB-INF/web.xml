@@ -5,13 +5,63 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
     <servlet>
-        <servlet-name>SignInController</servlet-name>
-        <servlet-class>logistic.web.SignInController</servlet-class>
+        <servlet-name>ClientController</servlet-name>
+        <servlet-class>logistic.web.controllers.ClientController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>OperatorController</servlet-name>
+        <servlet-class>logistic.web.controllers.OperatorController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CarrierController</servlet-name>
+        <servlet-class>logistic.web.controllers.CarrierController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>SignInController</servlet-name>
-        <url-pattern>/sign-in</url-pattern>
+        <servlet-name>ClientController</servlet-name>
+        <url-pattern>/client</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ClientController</servlet-name>
+        <url-pattern>/client/newOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ClientController</servlet-name>
+        <url-pattern>/client/profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>OperatorController</servlet-name>
+        <url-pattern>/operator</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>OperatorController</servlet-name>
+        <url-pattern>/operator/calendar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>OperatorController</servlet-name>
+        <url-pattern>/operator/profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CarrierController</servlet-name>
+        <url-pattern>/carrier</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CarrierController</servlet-name>
+        <url-pattern>/carrier/calendar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CarrierController</servlet-name>
+        <url-pattern>/carrier/profile</url-pattern>
     </servlet-mapping>
 
 <!--    <filter>

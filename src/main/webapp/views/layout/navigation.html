@@ -1,0 +1,52 @@
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <span class="navbar-brand">Логистическая система</span>
+    <span class="navbar-brand navbar-top-links navbar-right"><i class="fa fa-user fa-fw"></i> {{ currentUser.getName() }}</span>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                {% if currentUser.getType() is constant("logistic.web.models.User.TYPE_CLIENT") %}
+                    {% set role = "заказчик" %}
+                    <li>
+                        <a href="{{ documentFolderPath }}/client"><i class="fa fa-dashboard fa-fw"></i> Мои заказы</a>
+                    </li>
+                    <li>
+                        <a href="{{ documentFolderPath }}/client/newOrder"><i class="fa fa-table fa-fw"></i> Новый заказ</a>
+                    </li>
+                    <li>
+                        <a href="{{ documentFolderPath }}/client/profile"><i class="fa fa-user fa-fw"></i> Профиль</a>
+                    </li>
+                {% endif %}
+                {% if currentUser.getType() is constant("logistic.web.models.User.TYPE_OPERATOR") %}
+                    {% set role = "опертатор" %}
+                    <li>
+                        <a href="{{ documentFolderPath }}/operator"><i class="fa fa-dashboard fa-fw"></i> Заказы</a>
+                    </li>
+                    <li>
+                        <a href="{{ documentFolderPath }}/operator/calendar"><i class="fa fa-table fa-fw"></i> Календарь</a>
+                    </li>
+                    <li>
+                        <a href="{{ documentFolderPath }}/operator/profile"><i class="fa fa-user fa-fw"></i> Профиль</a>
+                    </li>
+                {% endif %}
+                {% if currentUser.getType() is constant("logistic.web.models.User.TYPE_CARRIER") %}
+                {% set role = "перевозчик" %}
+                    <li>
+                        <a href="{{ documentFolderPath }}/carrier"><i class="fa fa-dashboard fa-fw"></i> Мои заказы</a>
+                    </li>
+                    <li>
+                        <a href="{{ documentFolderPath }}/carrier/calendar"><i class="fa fa-table fa-fw"></i> Календарь</a>
+                    </li>
+                    <li>
+                        <a href="{{ documentFolderPath }}/carrier/profile"><i class="fa fa-user fa-fw"></i> Профиль</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="{{ documentFolderPath }}/logout"><i class="fa fa-sign-out fa-fw"></i> Выход</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>

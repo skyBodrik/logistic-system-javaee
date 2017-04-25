@@ -1,6 +1,8 @@
 group 'logistic'
 version 'v1.0-study'
 
+apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'war'
 
 repositories {
@@ -8,10 +10,43 @@ repositories {
     jcenter()
 }
 
+war {
+    manifest {
+        attributes("Dependencies": "org.dom4j export")
+    }
+}
+
 dependencies {
-    compile 'com.sparkjava:spark-core:2.5'
-    compile 'com.sparkjava:spark-template-thymeleaf:2.3'
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0-b05'
+    compile "org.apache.httpcomponents:httpclient:4.3.6"
+    compile "com.sparkjava:spark-core:2.5"
+    providedCompile group: 'dom4j', name: 'dom4j', version: '1.6.1-jboss'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+    providedCompile group: 'javax', name: 'javaee-api', version: '7.0'
+    compile group: 'com.lyncode', name: 'jtwig-core', version: '3.1.1'
     compile "org.jtwig:jtwig-web:5.85.3.RELEASE"
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.6.2'
+    compile group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.0-b05'
+    compile group: 'javax.ejb', name: 'javax.ejb-api', version: '3.2'
+    compile group: 'javax.enterprise', name: 'cdi-api', version: '2.0-PFD2'
+    providedCompile group: 'org.hibernate', name: 'hibernate-core', version: '5.1.0.Final'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
+    providedCompile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.10.Final'
+    providedCompile group: 'org.hibernate', name: 'hibernate-validator', version: '5.2.4.Final'
+    providedCompile group: 'org.hibernate', name: 'hibernate-ehcache', version: '5.2.10.Final'
+
+/*
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.4'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.7.4'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.7.4'
+    compile 'org.jdom:jdom2:2.0.6'
+    compile 'org.codehaus.woodstox:woodstox-core-asl:4.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
+    compile group: 'javax.ejb', name: 'javax.ejb-api', version: '3.2'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
+*/
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
