@@ -6,8 +6,6 @@ import logistic.web.facade.OrderFacade;
 import logistic.web.models.Calendar;
 import logistic.web.models.Order;
 import logistic.web.models.User;
-import logistic.web.repositories.CalendarRepository;
-import logistic.web.repositories.OrdersRepository;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -18,6 +16,14 @@ import java.util.Optional;
  * Created by bodrik on 22.04.17.
  */
 public class CarrierController extends MainController implements iController {
+    @Override
+    protected boolean checkAuthorization() throws ServletException, IOException {
+        if (super.checkAuthorization() && this.userFacade.getLoggedUser().getType() == User.TYPE_CARRIER) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean indexPage() throws ServletException, IOException {
         if (!this.checkAuthorization()) {

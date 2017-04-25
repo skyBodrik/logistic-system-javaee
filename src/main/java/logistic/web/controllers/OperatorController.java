@@ -1,11 +1,9 @@
 package logistic.web.controllers;
 
-import logistic.web.facade.CityFacade;
 import logistic.web.facade.OrderFacade;
 import logistic.web.facade.UserFacade;
 import logistic.web.models.Order;
 import logistic.web.models.User;
-import logistic.web.repositories.OrdersRepository;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
@@ -16,6 +14,14 @@ import java.util.Optional;
  * Created by bodrik on 22.04.17.
  */
 public class OperatorController extends MainController implements iController {
+    @Override
+    protected boolean checkAuthorization() throws ServletException, IOException {
+        if (super.checkAuthorization() && this.userFacade.getLoggedUser().getType() == User.TYPE_OPERATOR) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean indexPage() throws ServletException, IOException {
         if (!this.checkAuthorization()) {

@@ -53,15 +53,6 @@ public class MainController extends HttpServlet implements iController {
             }
         }
 
-/*        PrintWriter pw = this.response.getWriter();
-        pw.println("data: " + methodName);
-
-        //this.checkAndInvoke(methodName);
-
-        if (!request.getContextPath().isEmpty()) {
-            return;
-        }*/
-
         // Достаём объекты из EJB контейнера
         try {
             InitialContext context = new InitialContext();
@@ -106,15 +97,6 @@ public class MainController extends HttpServlet implements iController {
         if (!this.checkAndInvoke(methodName)) {
             renderTemplate("error.html");
         };
-        //} else {
-            //this.dataTemplate.getStorage().put("authorizationStatus", false);
-            //renderTemplate("/sign-in.html");
-/*            this.request.getRequestURI();
-            this.response.setContentType("text/html;charset=utf-8");
-
-            PrintWriter pw = this.response.getWriter();
-            pw.println("email: " + this.request.getParameter("email"));*/
-        //}
     }
 
     /**
@@ -135,8 +117,6 @@ public class MainController extends HttpServlet implements iController {
     }
 
     protected void renderTemplate(String path) throws ServletException, IOException {
-
-        //RenderContext.create(new RenderConfiguration().charset(), new JtwigModelMap());
         pageTemplate.dispatcherFor("/views/" + path)
             .with(this.dataTemplate.getStorage())
                 .render(this.request, this.response);

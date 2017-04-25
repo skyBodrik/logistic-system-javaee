@@ -14,29 +14,24 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <form role="form" method="post" action="?action=save_orders">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Дата</th>
-                                    <th>Перевозчики</th>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Перевозчики</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in calendar %}
+                                <tr class="{{ rowMarker }}">
+                                    <td>
+                                        {{ item.date }}
+                                    </td>
+                                    <td>{{ item.details }}</td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                {% for item in calendar %}
-                                    <tr class="{{ rowMarker }}">
-                                        <td>
-                                            {{ item.date }}
-                                        </td>
-                                        <td>{{ item.details }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-success">Сохранить</button>
-                            </div>
-                        </form>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                     <!-- /.table-responsive -->
                 </div>

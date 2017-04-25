@@ -19,6 +19,14 @@ import java.util.Optional;
  */
 public class ClientController extends MainController implements iController {
     @Override
+    protected boolean checkAuthorization() throws ServletException, IOException {
+        if (super.checkAuthorization() && this.userFacade.getLoggedUser().getType() == User.TYPE_CLIENT) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean indexPage() throws ServletException, IOException {
         if (!this.checkAuthorization()) {
             response.sendRedirect((String) this.dataTemplate.getStorage().get("documentFolderPath") + "/sign-in");

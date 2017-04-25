@@ -1,0 +1,23 @@
+<!-- jQuery -->
+<script src="{{ documentFolderPath }}/vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ documentFolderPath }}/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="{{ documentFolderPath }}/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="{{ documentFolderPath }}/dist/js/sb-admin-2.js"></script>
+
+{% if statusMessage is defined %}
+<script lang="JavaScript">
+    $(function() {
+        alert("{{ statusMessage }}");
+    });
+</script>
+{% endif %}
+
+</body>
+
+</html>
